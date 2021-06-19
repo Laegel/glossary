@@ -1,0 +1,33 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "rootDirs": [
+            "./src/"
+        ],
+        "paths": {
+            "@impala/*": [
+                "./src/*"
+            ]
+        },
+        "sourceMap": true,
+        "allowJs": true,
+        "declaration": false,
+        "module": "ESNext",
+        "target": "es5",
+        "lib": [
+            "ES2015",
+            "dom"
+        ],
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}

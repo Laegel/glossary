@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossary</title>
+</head>
+<body>
+  <section>
+    <h1>Welcome to Glossary!</h1>
+    <div class="content">
+      Glossary is a docs utilitary library which goal is to help newcomers to understand authors explanations easier <i>without leaving their content</i>.
+      Whenever you bring information from a context, you use jargons: new words that require people to pause their readings to look for definitions on their search engines. 
+      Worse: the words may have homonymous and prevent people from understanding author's meaning correctly.
+      Breaking the reading is a source of distraction and is good neither for readers nor for authors.
+      
+      Glossary is a simple way to bring explicitness with parcimony.
+      Tooltips can have rich text. Their contents can be loaded from promises or functions.
+    </div>
+  </section>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 17px;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #242b33;
+      color: #abb9bf;
+    }
+
+    h1 {
+      font-weight: bold;
+    }
+
+    .content {
+      line-height: 21px;
+    }
+
+    .glssry-item {
+      cursor: pointer;
+      border-bottom: 2px solid;
+      border-top: 2px solid transparent;
+      position: relative;
+      z-index: 0;
+      color: #228a96;
+      transition: .4s;
+      white-space: nowrap;
+    }
+
+    .glssry-item:after {
+      content: "";
+      display: block;
+      background: #228a96;
+      width: 100%;
+      height: 0;
+      bottom: 0;
+      position: absolute;
+      left: 0;
+      transition: all .4s ease-out;
+      z-index: -1;
+    }
+
+    .glssry-item:focus:after, .glssry-item:hover:after, .glssry-item.active:after {
+      height: 100%;
+    }
+
+    .glssry-item:focus, .glssry-item:hover, .glssry-item.active {
+      color: #abb9bf;
+      border-bottom-color: #228a96;
+    }
+
+    .glssry-item:focus{
+      outline: none;
+    }
+
+    .glssry-tooltip {
+      position: absolute;
+      background-color: #29333c;
+      border: 1px solid #3a4551;
+      padding: 5px;
+      font-size: .9em;
+      max-width: 100vw;
+      border-left: 4px inset #228a96;
+    }
+  </style>
+  <style>
+    section {
+      max-width: 960px;
+      margin: auto;
+      padding: 0 20px;
+    }
+  </style>
+  <script type="module">
+    import { glossarize } from "./dist/glossarize.js";
+    const app = glossarize([
+      {
+        match: "jargons?", // Match a regex
+        definition: `A jargon is a group of words that live in a specific context, e.g. "scientific jargon", often hard to understand to beginners.`,
+      },
+      {
+        match: "rich text", 
+        definition: `
+          You may use <strong>HTML</strong> in your definitions. 
+        `,
+      },
+      {
+        match: "promises",
+        definition: new Promise((resolve) => resolve(`Promises can be resolved, allowing use of asynchronous data.`)),
+      },
+      {
+        match: "functions",
+        definition: () => `Definitions may also be defined as functions returning a string.`,
+      }
+    ]);
+  </script>
+</body>
+</html>
